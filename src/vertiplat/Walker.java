@@ -44,5 +44,4 @@ public class Walker implements StepListener {
     public void setBody(Luke luke) {
         body = luke;
     }
-    
 }

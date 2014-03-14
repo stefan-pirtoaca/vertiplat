@@ -98,5 +98,4 @@ public class Controller extends KeyAdapter {
         walkLeft.setBody(body);
         walkRight.setBody(body);
     }
-    
 }
