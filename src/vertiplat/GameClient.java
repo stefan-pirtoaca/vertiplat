@@ -80,6 +80,5 @@ public class GameClient {
     
     public static void main(String[] args) {
         new GameClient();
-        new SpiderWalking(world.getSpider());
     }
 }
