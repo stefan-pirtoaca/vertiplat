@@ -10,22 +10,22 @@ import javax.swing.JFrame;
 
 public class GameClient {
 
-    static BaseLevel world; //the world
-    private NormalView view;
-    private Controller controller;
-    private int level;
+    private static BaseLevel    world;                                          //the world
+    private final NormalView    view;
+    private final Controller    controller;
+    private int                 level;
     
     //Constructor
     public GameClient() {
     
         //make world
-        world = new Level2();
+        world = new Level1();
         world.build(this);
         level = 1;
         
         //user view
         view = new NormalView(world, 800, 700);
-        view.setZoom(30f);
+        view.setZoom(25f);
         final JFrame frame = new JFrame("VertiPlat");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationByPlatform(true);
@@ -35,8 +35,7 @@ public class GameClient {
         frame.setVisible(true);
         controller = new Controller(world.getPlayer());
         frame.addKeyListener(controller);
-        //uncomment to enable debugging view
-        JFrame debugView = new DebugViewer(world, 800, 700);
+        //JFrame debugView = new DebugViewer(world, 800, 700);                  //uncomment to enable debugging view
 
         world.start();
         world.addStepListener(new Tracker(view, world.getPlayer()));

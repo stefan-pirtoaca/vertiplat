@@ -14,20 +14,21 @@ import java.awt.event.KeyEvent;
  * X = attack
  * Q = quit
  */
+
 public class Controller extends KeyAdapter {
-    private static final float JUMPING_SPEED = 11;
-    private static final float WALKING_SPEED = 7;
     
-    private Luke body;
-    private World world;
-    private Walker walkLeft;
-    private Walker walkRight;
-    private boolean walking = false; //fixed windows bug that kept adding listeners
-    private boolean attacking = false; //same fix for attacking
-    private int lastDirectionOfWalking = KeyEvent.VK_RIGHT; //basically, it retains the KeyCode of the last
-                                        //KeyEvent, lets me know which attack image to use  
-    private BodyImage walkRightImg = new BodyImage("data/LukeRight.png", 4f);
-    private BodyImage walkLeftImg = new BodyImage("data/LukeLeft.png", 4f);
+    private static final float  JUMPING_SPEED = 11;
+    private static final float  WALKING_SPEED = 7;
+    private Luke                body;
+    private World               world;
+    private final Walker        walkLeft;
+    private final Walker        walkRight;
+    private boolean             walking = false;                                //fixed windows bug that kept adding listeners
+    private boolean             attacking = false;                              //same fix for attacking
+    private int                 lastDirectionOfWalking = KeyEvent.VK_RIGHT;     //basically, it retains the KeyCode of the last
+                                                                                //KeyEvent, lets me know which attack image to use  
+    private final BodyImage     walkRightImg = new BodyImage("data/LukeRight.png", 4f);
+    private final BodyImage     walkLeftImg = new BodyImage("data/LukeLeft.png", 4f);
     
     
     public Controller(Luke body) {
@@ -37,11 +38,12 @@ public class Controller extends KeyAdapter {
         this.walkRight = new Walker(body, WALKING_SPEED);
     }
     
-    /** Handle key press events for walking(arrow keys), jumping(space bar) and attacking(x). */
+    /** Handle key press events for walking(arrow keys),
+     * jumping(space bar) and attacking(x). */
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
-        if (code == KeyEvent.VK_Q) { // Q = quit
+        if (code == KeyEvent.VK_Q) {                                            // Q = quit
             System.exit(0);
         } else if (code == KeyEvent.VK_SPACE) { // SPACE = jump
             Vec2 v = body.getLinearVelocity();

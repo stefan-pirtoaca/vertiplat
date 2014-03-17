@@ -4,8 +4,8 @@ import city.cs.engine.*;
 
 public class ExitListener implements CollisionListener{
     
-    private final GameClient game;
-    private Luke luke;
+    private final GameClient    game;
+    private Luke                luke;
 
     public ExitListener(GameClient game) {
         this.game = game;

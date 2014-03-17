@@ -5,20 +5,21 @@ import org.jbox2d.common.Vec2;
 
 public class Level2 extends BaseLevel{
     
-    private static final float GROUND_LENGTH = 100;
-    private static final float GROUND_POS = -10;
-    private static final float WALL_HEIGHT = 50; 
-    private static final float WALL_X = 50; //to match ground length, do GROUND_LENGTH/2
-    private static final float BLOCK_SIZE = 2.5f; //half, actual block size is 5
-    private static final BodyImage bricks = new BodyImage("data/surface.png", 5);
-    private GoldCoin coin;
-    private HPpot hpPot;
+    private static final float      GROUND_LENGTH = 100;
+    private static final float      GROUND_POS = -10;
+    private static final float      WALL_HEIGHT = 50; 
+    private static final float      WALL_X = 50;                                //to match ground length, do GROUND_LENGTH/2
+    private static final float      BLOCK_SIZE = 2.5f;                          //half, actual block size is 5
+    private static final BodyImage  bricks = new BodyImage("data/surface.png", 5);
+    private static final int        goldCoinNumber = 13;
+    private GoldCoin                coin;
+    private HPpot                   hpPot;
     
     @Override
     public void build(GameClient game) {
         super.build(game);
         
-         //Ground
+                                                                                //Ground
          for(float i = -(GROUND_LENGTH/2); i <= GROUND_LENGTH/2; i += 2*BLOCK_SIZE) {
             Shape shape = new BoxShape(BLOCK_SIZE, BLOCK_SIZE);
             Body ground = new StaticBody(this, shape);
@@ -27,7 +28,7 @@ public class Level2 extends BaseLevel{
             ground.setImage(bricks);
         }
          
-        //Walls
+                                                                                //Walls
          for(float i = GROUND_POS + 2*BLOCK_SIZE; i <= WALL_HEIGHT; i += 2*BLOCK_SIZE) {
              Shape shape = new BoxShape(BLOCK_SIZE, BLOCK_SIZE);
              Body leftWall = new StaticBody(this, shape);
@@ -43,12 +44,12 @@ public class Level2 extends BaseLevel{
     }
     
     @Override
-    public Vec2 spawnPoint() {
+    public Vec2 spawnPoint() {                                                  //player spawn point
         return new Vec2(0, 0);
     }
     
     @Override
-    public Vec2 exitPoint() {
+    public Vec2 exitPoint() {                                                   //exit spawn point
         return new Vec2(0, 20);
     }
     

@@ -7,8 +7,8 @@ import org.jbox2d.common.Vec2;
  * Class to make a body walk at a given speed.
  */
 public class Walker implements StepListener {
-    private DynamicBody body;
-    private float speed;
+    private DynamicBody         body;
+    private final float         speed;
     
     /**
      * Create a walker for the given body.

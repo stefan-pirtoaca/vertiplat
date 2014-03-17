@@ -5,8 +5,8 @@ import org.jbox2d.common.Vec2;
 
 public abstract class BaseLevel extends World {
     
-    private Luke luke;
-    private LevelExit exit;
+    private Luke        luke;
+    private LevelExit   exit;
     
     public void build(GameClient game) {
         luke = new Luke(this);

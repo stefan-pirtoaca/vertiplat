@@ -1,22 +1,17 @@
 package vertiplat;
 
 import city.cs.engine.*;
-import java.awt.Color;
-import org.jbox2d.common.Vec2;
 
 public class Spider extends DynamicBody {
     
-    private static final Shape bodyShape = new BoxShape(2, 0.8f);
-    private static final BodyImage spiderRight = new BodyImage("data/spiderRight.png", 2f);
-    private static final int damage = 10;
-    private int HP = 20;
-    private GoldCoin coin;
-    private HPpot hpPot;
-    private Walker spiderWalkLeft;
-    private Walker spiderWalkRight;
-    private BaseLevel world;
-    private Vec2 walkSpeed = new Vec2(2, 0);
-    
+    private static final Shape          bodyShape = new BoxShape(2, 0.8f);
+    private static final BodyImage      spiderRight = new BodyImage("data/spiderRight.png", 2f);
+    private static final int            damage = 10;
+    private static final float          walkSpeed = 2f;
+    private final BaseLevel             world;
+    private int                         HP = 20;
+    private GoldCoin                    coin;    
+    private HPpot                       hpPot;    
 
     public Spider(BaseLevel world) {
         super(world, bodyShape);
@@ -26,19 +21,10 @@ public class Spider extends DynamicBody {
         setFixedRotation(true);
         body.setFriction(30);
         body.setRestitution(0);
-        this.addCollisionListener(new CollisionHandler(world.getPlayer(), this, coin, hpPot));
-        //spiderWalkLeft = new Walker(this, - 4);
-        //spiderWalkRight = new Walker(this, 4);
+        this.addCollisionListener(new CollisionHandler(world.getPlayer(), this,
+                                  coin, hpPot));
+        world.addStepListener(new EnemyWalker(this, walkSpeed));
      }
-    
-    public void walk() {
-        for(int i = 0; i <= 100; i++) {
-            this.setLinearVelocity(walkSpeed);
-        }
-        for(int i = 0; i <= 100; i++) {
-            this.setLinearVelocity(walkSpeed.negate());
-        }
-    }
     
     public void damage(Luke luke) {
         luke.setHP(luke.getHP() - damage);

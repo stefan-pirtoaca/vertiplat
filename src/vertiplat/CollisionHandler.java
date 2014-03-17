@@ -4,10 +4,10 @@ import city.cs.engine.*;
 
 public class CollisionHandler implements CollisionListener {
     
-    private final Luke luke;
-    private final GoldCoin coin;
-    private final Spider spider;
-    private final HPpot hpPot;
+    private final Luke      luke;
+    private final GoldCoin  coin;
+    private final Spider    spider;
+    private final HPpot     hpPot;
     
     public CollisionHandler(Luke luke, Spider spider, GoldCoin coin, HPpot hpPot) {
         this.luke = luke;

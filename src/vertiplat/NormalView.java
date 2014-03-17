@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
 public class NormalView extends UserView {
-    private Image backgroundImage;
+    private static Image        backgroundImage;
     
     public NormalView (World world, int width, int height){
         super(world, width, height);
@@ -21,7 +21,7 @@ public class NormalView extends UserView {
     }
     
     @Override
-    protected void paintForeground (Graphics2D g) { //left off here
+    protected void paintForeground (Graphics2D g) {
         //GUI goes here
     }
 }
