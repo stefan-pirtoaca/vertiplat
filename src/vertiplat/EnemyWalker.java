@@ -28,7 +28,6 @@ public class EnemyWalker implements StepListener{
             world.removeStepListener(walkRight);
             world.addStepListener(walkLeft);
             goingRight = false;
-            System.out.println(time / 4);
         } else if(time % (2 * seconds) == 0){
             world.removeStepListener(walkLeft);
             world.addStepListener(walkRight);
