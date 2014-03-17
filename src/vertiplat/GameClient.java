@@ -19,7 +19,7 @@ public class GameClient {
     public GameClient() {
     
         //make world
-        world = new Level1();
+        world = new Level2();
         world.build(this);
         level = 1;
         
@@ -36,7 +36,7 @@ public class GameClient {
         controller = new Controller(world.getPlayer());
         frame.addKeyListener(controller);
         //uncomment to enable debugging view
-        //JFrame debugView = new DebugViewer(world, 800, 700);
+        JFrame debugView = new DebugViewer(world, 800, 700);
 
         world.start();
         world.addStepListener(new Tracker(view, world.getPlayer()));

@@ -11,6 +11,7 @@ public class Spider extends DynamicBody {
     private static final int damage = 10;
     private int HP = 20;
     private GoldCoin coin;
+    private HPpot hpPot;
     private Walker spiderWalkLeft;
     private Walker spiderWalkRight;
     private BaseLevel world;
@@ -25,7 +26,7 @@ public class Spider extends DynamicBody {
         setFixedRotation(true);
         body.setFriction(30);
         body.setRestitution(0);
-        this.addCollisionListener(new CollisionHandler(world.getPlayer(), this, coin));
+        this.addCollisionListener(new CollisionHandler(world.getPlayer(), this, coin, hpPot));
         //spiderWalkLeft = new Walker(this, - 4);
         //spiderWalkRight = new Walker(this, 4);
      }

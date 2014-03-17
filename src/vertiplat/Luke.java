@@ -43,7 +43,7 @@ public class Luke extends DynamicBody {
     }
     
     public void damageSpider(Spider spider) {
-        spider.setHP(spider.getHP() - baseDamage);
+         spider.setHP(spider.getHP() - baseDamage);
     }
     
     public int getHP() {

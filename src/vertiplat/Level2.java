@@ -12,6 +12,7 @@ public class Level2 extends BaseLevel{
     private static final float BLOCK_SIZE = 2.5f; //half, actual block size is 5
     private static final BodyImage bricks = new BodyImage("data/surface.png", 5);
     private GoldCoin coin;
+    private HPpot hpPot;
     
     @Override
     public void build(GameClient game) {
@@ -36,6 +37,9 @@ public class Level2 extends BaseLevel{
              leftWall.setImage(bricks);
              rightWall.setImage(bricks);
          }
+         
+         hpPot = new HPpot(this);
+         hpPot.setPosition(new Vec2(3, -GROUND_POS*2));
     }
     
     @Override
