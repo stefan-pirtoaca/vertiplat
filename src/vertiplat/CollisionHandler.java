@@ -19,23 +19,30 @@ public class CollisionHandler implements CollisionListener {
     @Override
     public void collide(CollisionEvent e) {
         if(e.getOtherBody() == luke) {
-            if(e.getReceivingBody() instanceof GoldCoin) {
+            if(e.getReceivingBody() instanceof GoldCoin) {                      //GoldCoin collision
                 luke.increaseGold(coin.getBaseValue());
                 e.getReceivingBody().destroy();
                 System.out.println("Collision happened at: " + "" +
                         e.getPosition() + " and current gold is " + "" +
                         luke.getGold());                                        //for debugging
-            } else if(e.getReceivingBody() instanceof Spider &&
-                      e.getOtherFixture() != luke.getFixtureList().get(0)) {
-                spider.damage(luke);
-              //luke.setLinearVelocity(new Vec2(2, luke.getLinearVelocity().y));
-                System.out.println("Luke's HP is " + luke.getHP());             //for debugging
-              //System.out.println(e.getOtherFixture());
-            } else if(e.getOtherFixture() == luke.getFixtureList().get(0) &&
-                      e.getReceivingBody() instanceof Spider) {
-                luke.damageSpider(spider);
-                System.out.println("Spider HP is "  +spider.getHP());
-            } else if(e.getReceivingBody() instanceof HPpot) {
+                
+            } else if(e.getReceivingBody() instanceof Spider) {                 //Spider-player collision and damage exchange
+                
+                if(luke.getHP() > 0) {
+                    spider.damage(luke);
+                    System.out.println("Luke's HP is " + luke.getHP());         //for debugging
+                } else {
+                    luke.die();                                                 //player death and respawn
+                    luke.setPosition(luke.getWorld().spawnPoint());
+                    luke.setHP(luke.getMaxHP());
+                }
+                
+                if(spider.getHP() > 0) {
+                    luke.damageSpider(spider);
+                    System.out.println("Spider HP is "  +spider.getHP());
+                } else spider.destroy();
+                
+            } else if(e.getReceivingBody() instanceof HPpot) {                  //Hitpoints potion heals player
                 hpPot.heal(luke);
                 System.out.println("Luke's HP is " + luke.getHP());             //for debugging
                 hpPot.destroy();

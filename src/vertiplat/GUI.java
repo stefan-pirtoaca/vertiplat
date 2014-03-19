@@ -2,11 +2,11 @@ package vertiplat;
 
 public class GUI extends javax.swing.JPanel {
 
-    /**
-     * Creates new form GUI
-     */
-    public GUI() {
+    private final BaseLevel     world;
+
+    public GUI(BaseLevel world) {
         initComponents();
+        this.world = world;
     }
 
     /**
@@ -18,36 +18,46 @@ public class GUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        HPbar = new javax.swing.JProgressBar();
+        pausedToggle = new javax.swing.JToggleButton();
 
-        HPbar.setBackground(new java.awt.Color(255, 0, 0));
-        HPbar.setForeground(new java.awt.Color(78, 78, 78));
-        HPbar.setValue(87);
-        HPbar.setFocusable(false);
-        HPbar.setName("HP"); // NOI18N
-        HPbar.setString("100");
-        HPbar.setStringPainted(true);
+        pausedToggle.setText("Paused");
+        pausedToggle.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                pausedToggleStateChanged(evt);
+            }
+        });
+        pausedToggle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pausedToggleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(HPbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addComponent(pausedToggle)
+                .addGap(0, 338, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(265, Short.MAX_VALUE)
-                .addComponent(HPbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(pausedToggle))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void pausedToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pausedToggleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pausedToggleActionPerformed
+
+    private void pausedToggleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_pausedToggleStateChanged
+        world.setPaused(true);
+    }//GEN-LAST:event_pausedToggleStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JProgressBar HPbar;
+    private javax.swing.JToggleButton pausedToggle;
     // End of variables declaration//GEN-END:variables
 }

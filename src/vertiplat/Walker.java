@@ -29,7 +29,6 @@ public class Walker implements StepListener {
     public void preStep(StepEvent e) {
         Vec2 v = body.getLinearVelocity();
         body.setLinearVelocity(new Vec2(speed, v.y));
-        body.getPosition();
     }
 
     /**

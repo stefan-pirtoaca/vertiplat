@@ -1,6 +1,7 @@
 package vertiplat;
 
-import city.cs.engine.*;
+import java.awt.BorderLayout;
+import java.awt.Container;
 
 import javax.swing.JFrame;
 
@@ -39,6 +40,9 @@ public class GameClient {
 
         world.start();
         world.addStepListener(new Tracker(view, world.getPlayer()));
+        
+        Container GUIcontrols = new GUI(world);
+        //frame.add(GUIcontrols, BorderLayout.SOUTH);
     }
     
     public Luke getPlayer() {
@@ -48,27 +52,25 @@ public class GameClient {
     public void goNextLevel() {
         world.setPaused(true);
         switch (level) {
-            case 1: {
-            level++;
-            world = new Level2();
-            world.build(this);
-            controller.setBody(world.getPlayer());
-            view.setWorld(world);
-            world.start();
+            case 1: 
+                level++;
+                world = new Level2();
+                world.build(this);
+                controller.setBody(world.getPlayer());
+                view.setWorld(world);
+                world.start();
             break;
-            }
             
-            case 2: {
-            level++;
-            world = new Level3();
-            world.build(this);
-            controller.setBody(world.getPlayer());
-            view.setWorld(world);
-            world.start();
+            case 2:
+                level++;
+                world = new Level3();
+                world.build(this);
+                controller.setBody(world.getPlayer());
+                view.setWorld(world);
+                world.start();
             break;
-            }
-            
-            case 3: 
+                
+            default: 
                 System.exit(0);
         }
     }

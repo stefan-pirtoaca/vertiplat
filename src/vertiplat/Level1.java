@@ -13,7 +13,7 @@ public class Level1 extends BaseLevel {
     private static final BodyImage  bricks = new BodyImage("data/surface.png", 5);
     private static final int        goldCoinNumber = 13;
     private GoldCoin                coin;
-    private Spider                  spider;
+    private Spider                  spider1,spider2, spider3;
 
     @Override
     public void build(GameClient game) {
@@ -58,12 +58,12 @@ public class Level1 extends BaseLevel {
             coin.setPosition(new Vec2(i*2, 3));
         }
           
-          spider = new Spider(this);                                            //Enemies
-          spider.setPosition(new Vec2(WALL_X - 3*BLOCK_SIZE, 2.5f));
-    }
-    
-    public Spider getSpider() {
-        return spider;
+          spider1 = new Spider(this, 2);                                         //Enemies
+          spider2 = new Spider(this, 2);
+          spider3 = new Spider(this, 2);
+          spider1.setPosition(new Vec2(WALL_X - 3*BLOCK_SIZE, -2.5f));
+          spider2.setPosition(new Vec2(-WALL_X + 3*BLOCK_SIZE, -2.5f));
+          spider3.setPosition(new Vec2(0, 3f));
     }
     
     @Override

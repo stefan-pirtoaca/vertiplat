@@ -17,37 +17,29 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="HPbar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="238" max="32767" attributes="0"/>
+              <Component id="pausedToggle" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="338" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="265" max="32767" attributes="0"/>
-              <Component id="HPbar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="pausedToggle" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JProgressBar" name="HPbar">
+    <Component class="javax.swing.JToggleButton" name="pausedToggle">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="ff" type="rgb"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="4e" green="4e" red="4e" type="rgb"/>
-        </Property>
-        <Property name="value" type="int" value="87"/>
-        <Property name="focusable" type="boolean" value="false"/>
-        <Property name="name" type="java.lang.String" value="HP" noResource="true"/>
-        <Property name="string" type="java.lang.String" value="100"/>
-        <Property name="stringPainted" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="Paused"/>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="pausedToggleStateChanged"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pausedToggleActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

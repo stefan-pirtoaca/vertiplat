@@ -9,13 +9,13 @@ public class EnemyWalker implements StepListener{
     private static Walker       walkLeft;
     private static World        world;
     private static boolean      goingRight = true;
-    private static int          time = 0;
-    private final float         speed;
-    private final DynamicBody   body;
+    private static long         time = 0;                                       //no see
+    private final int           timeToWalk;                                     //for how much time the characer goes left/right
+    private final Spider        body;
     
-    public EnemyWalker(DynamicBody body, float speed) {
+    public EnemyWalker(Spider body, float speed, int timeToWalk) {
         this.body = body;
-        this.speed = speed;
+        this.timeToWalk = timeToWalk;
         walkRight = new Walker(body, speed);
         walkLeft = new Walker(body, -speed);
         world = body.getWorld();
@@ -23,15 +23,17 @@ public class EnemyWalker implements StepListener{
     }
     
     @Override
-    public synchronized void preStep(StepEvent e) {
-        if(time % (2 * seconds) == 0 && goingRight) {
+    public void preStep(StepEvent e) {
+        if(time % (timeToWalk * seconds) == 0 && goingRight) {
             world.removeStepListener(walkRight);
             world.addStepListener(walkLeft);
             goingRight = false;
-        } else if(time % (2 * seconds) == 0){
+            body.switchImage("left");
+        } else if(time % (timeToWalk * seconds) == 0){
             world.removeStepListener(walkLeft);
             world.addStepListener(walkRight);
             goingRight = true;
+            body.switchImage("right");
         }
         time++;
     }

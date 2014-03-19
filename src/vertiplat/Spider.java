@@ -5,17 +5,16 @@ import city.cs.engine.*;
 public class Spider extends DynamicBody {
     
     private static final Shape          bodyShape = new BoxShape(2, 0.8f);
-    private static final BodyImage      spiderRight = new BodyImage("data/spiderRight.png", 2f);
-    private static final int            damage = 10;
-    private static final float          walkSpeed = 2f;
-    private final BaseLevel             world;
+    private final BodyImage      spiderRight = new BodyImage("data/spiderRight.png", 2f);
+    private final BodyImage      spiderLeft = new BodyImage("data/spiderLeft.png", 2f);
+    private static final int            damage = 5;
+    private static final float          walkSpeed = 2f;          
     private int                         HP = 20;
     private GoldCoin                    coin;    
     private HPpot                       hpPot;    
 
-    public Spider(BaseLevel world) {
+    public Spider(BaseLevel world, int timeToWalk) {
         super(world, bodyShape);
-        this.world = world;
         SolidFixture body = new SolidFixture(this, bodyShape);
         setImage(spiderRight);
         setFixedRotation(true);
@@ -23,11 +22,24 @@ public class Spider extends DynamicBody {
         body.setRestitution(0);
         this.addCollisionListener(new CollisionHandler(world.getPlayer(), this,
                                   coin, hpPot));
-        world.addStepListener(new EnemyWalker(this, walkSpeed));
+        world.addStepListener(new EnemyWalker(this, walkSpeed, timeToWalk));
      }
     
     public void damage(Luke luke) {
         luke.setHP(luke.getHP() - damage);
+    }
+    
+    public void switchImage(String s) {
+        switch (s) {
+            case "right":
+                this.setImage(spiderRight);
+                break;
+            case "left":
+                this.setImage(spiderLeft);
+                break;
+            default:
+                System.out.println("switchImage in Spider needs right or left as input");
+        }
     }
        
     public int getHP() {
