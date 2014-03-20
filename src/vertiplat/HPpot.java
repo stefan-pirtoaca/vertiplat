@@ -6,7 +6,7 @@ public class HPpot extends DynamicBody{
     
     private static final Shape      shape = new BoxShape(0.5f, 0.5f);
     private static final BodyImage  image = new BodyImage("data/HPpot.png");
-    private static final float      heal = 10;
+    private static final float      heal = 15;
     private static float            maxHP;
     private GoldCoin                goldCoin;
     private Spider                  spider;

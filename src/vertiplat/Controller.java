@@ -11,14 +11,14 @@ import java.awt.event.KeyEvent;
  * Left arrow key = walk left
  * Right arrow key = walk right
  * Space = jump
- * X = attack
+ * X = attack, spam attack is more effective than long pressing X
  * Q = quit
  */
 
 public class Controller extends KeyAdapter {
     
     private static final float  JUMPING_SPEED = 11;
-    private static final float  WALKING_SPEED = 7;
+    private static final float  WALKING_SPEED = 9;
     private Luke                body;
     private World               world;
     private final Walker        walkLeft;
@@ -34,7 +34,7 @@ public class Controller extends KeyAdapter {
     public Controller(Luke body) {
         this.body = body;
         this.world = body.getWorld();
-        this.walkLeft = new Walker(body, - WALKING_SPEED);
+        this.walkLeft = new Walker(body, -WALKING_SPEED);
         this.walkRight = new Walker(body, WALKING_SPEED);
     }
     
@@ -45,25 +45,23 @@ public class Controller extends KeyAdapter {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_Q) {                                            // Q = quit
             System.exit(0);
-        } else if (code == KeyEvent.VK_SPACE) { // SPACE = jump
+        } else if (code == KeyEvent.VK_SPACE) {                                 // SPACE = jump
             Vec2 v = body.getLinearVelocity();
             // only jump if body is not already jumping
             if (Math.abs(v.y) < 0.01f) {
                 body.setLinearVelocity(new Vec2(v.x, JUMPING_SPEED));
             }
-        } else if (code == KeyEvent.VK_LEFT  && !walking) {
-            // LEFT ARROW = walk left
+        } else if (code == KeyEvent.VK_LEFT  && !walking) {                     // LEFT ARROW = walk left
             world.addStepListener(walkLeft);
             body.setImage(walkLeftImg);
             walking = true;
             lastDirectionOfWalking = code;
-        } else if (code == KeyEvent.VK_RIGHT && !walking) {
-            //RIGHT ARROW = walk right
+        } else if (code == KeyEvent.VK_RIGHT && !walking) {                     //RIGHT ARROW = walk right
             world.addStepListener(walkRight);
             body.setImage(walkRightImg);
             //walking = true;
             lastDirectionOfWalking = code;
-        } else if(code == KeyEvent.VK_X && !attacking) { //X = attack
+        } else if(code == KeyEvent.VK_X && !attacking) {                        //X = attack
             attacking = true;
                 if (lastDirectionOfWalking == KeyEvent.VK_RIGHT) {
                     body.attackRight(body);
@@ -94,7 +92,7 @@ public class Controller extends KeyAdapter {
         }
     }
     
-        public void setBody(Luke luke) {
+    public void setBody(Luke luke) {
         body = luke;
         this.world = luke.getWorld();
         walkLeft.setBody(body);

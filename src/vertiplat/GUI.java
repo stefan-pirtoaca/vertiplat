@@ -19,6 +19,7 @@ public class GUI extends javax.swing.JPanel {
     private void initComponents() {
 
         pausedToggle = new javax.swing.JToggleButton();
+        restartButton = new javax.swing.JButton();
 
         pausedToggle.setText("Paused");
         pausedToggle.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -32,19 +33,31 @@ public class GUI extends javax.swing.JPanel {
             }
         });
 
+        restartButton.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
+        restartButton.setText("Restart");
+        restartButton.setMaximumSize(new java.awt.Dimension(69, 15));
+        restartButton.setMinimumSize(new java.awt.Dimension(69, 15));
+        restartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restartButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pausedToggle)
-                .addGap(0, 338, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 276, Short.MAX_VALUE)
+                .addComponent(restartButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(pausedToggle))
+            .addComponent(restartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -56,8 +69,14 @@ public class GUI extends javax.swing.JPanel {
         world.setPaused(true);
     }//GEN-LAST:event_pausedToggleStateChanged
 
+    private void restartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restartButtonActionPerformed
+        // TODO add your handling code here:
+        //world.startLevel();
+    }//GEN-LAST:event_restartButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton pausedToggle;
+    private javax.swing.JButton restartButton;
     // End of variables declaration//GEN-END:variables
 }

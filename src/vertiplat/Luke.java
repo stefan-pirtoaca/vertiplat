@@ -73,6 +73,10 @@ public class Luke extends DynamicBody {
         lives--;
     }
     
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+    
     public float getHP() {
         return HP;
     }

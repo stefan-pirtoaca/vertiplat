@@ -38,6 +38,7 @@ public class NormalView extends UserView {
     protected void paintForeground (Graphics2D g) {
         this.drawHPbar(g);
         this.drawLivesIndicator(g);
+        this.drawCoinsIndicator(g);
     }
     
     private void drawHPbar(Graphics2D g) {
@@ -71,5 +72,12 @@ public class NormalView extends UserView {
                 g.drawImage(emptyHeart, 2 * Offset, 0, this);
                 g.drawImage(emptyHeart, 4 * Offset, 0, this);
         }
+    }
+    
+    private void drawCoinsIndicator(Graphics2D g) {
+        g.translate(6*Offset, 0);
+        g.setColor(new Color(255, 0, 0));
+        g.drawString("Remaining coins: " + (luke.getWorld().getGoldCoinNumber() -
+                luke.getGold()), 0, HPbarHeight - HPbarHeight/3);
     }
 }

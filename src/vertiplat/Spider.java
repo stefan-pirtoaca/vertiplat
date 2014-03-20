@@ -5,11 +5,11 @@ import city.cs.engine.*;
 public class Spider extends DynamicBody {
     
     private static final Shape          bodyShape = new BoxShape(2, 0.8f);
-    private final BodyImage      spiderRight = new BodyImage("data/spiderRight.png", 2f);
-    private final BodyImage      spiderLeft = new BodyImage("data/spiderLeft.png", 2f);
-    private static final int            damage = 5;
+    private final BodyImage             spiderRight = new BodyImage("data/spiderRight.png", 2f);
+    private final BodyImage             spiderLeft = new BodyImage("data/spiderLeft.png", 2f);
+    private static final int            damage = 2;
     private static final float          walkSpeed = 2f;          
-    private int                         HP = 20;
+    private int                         HP = 40;
     private GoldCoin                    coin;    
     private HPpot                       hpPot;    
 
