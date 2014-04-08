@@ -1,6 +1,7 @@
 package vertiplat;
 
 import city.cs.engine.*;
+import java.net.MalformedURLException;
 import org.jbox2d.common.Vec2;
 
 public class Level2 extends BaseLevel{
@@ -14,7 +15,7 @@ public class Level2 extends BaseLevel{
     private Spider                  spider1, spider2, spider3, spider4, spider5;
     
     @Override
-    public void build(GameClient game) {
+    public void build(GameClient game) throws MalformedURLException {
         super.build(game);
         groundPos = super.getGroundPos();
         blockSize = super.getBlockSize();

@@ -20,8 +20,7 @@ public class Spider extends DynamicBody {
         setFixedRotation(true);
         body.setFriction(30);
         body.setRestitution(0);
-        this.addCollisionListener(new CollisionHandler(world.getPlayer(), this,
-                                  coin, hpPot));
+        this.addCollisionListener(new CollisionHandler(world.getPlayer(), this, coin, hpPot));
         world.addStepListener(new EnemyWalker(this, walkSpeed, timeToWalk));
      }
     
@@ -38,7 +37,7 @@ public class Spider extends DynamicBody {
                 this.setImage(spiderLeft);
                 break;
             default:
-                System.out.println("switchImage in Spider needs right or left as input");
+                System.err.println("switchImage in Spider needs right or left as input");
         }
     }
        

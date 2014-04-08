@@ -14,8 +14,7 @@ public class GoldCoin extends DynamicBody {
     public GoldCoin(BaseLevel world) {
         super(world, coinShape);
         setImage(coinImg);
-        this.addCollisionListener(new CollisionHandler(world.getPlayer(), spider,
-                                  this, hpPot));
+        this.addCollisionListener(new CollisionHandler(world.getPlayer(), spider, this, hpPot));
     }
 
     public int getBaseValue() {

@@ -1,6 +1,7 @@
 package vertiplat;
 
 import city.cs.engine.*;
+import java.net.MalformedURLException;
 import org.jbox2d.common.Vec2;
 
 public abstract class BaseLevel extends World {
@@ -14,12 +15,12 @@ public abstract class BaseLevel extends World {
     private static final float      BLOCK_SIZE = 2.5f;                          //half, actual block size is 5
     private static final BodyImage  bricks = new BodyImage("data/surface.png", 5);
     
-    public void build(GameClient game) {
+    public void build(GameClient game) throws MalformedURLException {
         luke = new Luke(this);
         luke.setPosition(spawnPoint());
         exit = new LevelExit(this);
         exit.setPosition(exitPoint());
-        exit.addCollisionListener(new ExitListener(game));
+        exit.addCollisionListener(new ExitListener(game, exit));
         WALL_X = this.wallX();
         
                                                                                 //Ground

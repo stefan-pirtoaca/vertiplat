@@ -33,6 +33,7 @@ public class CollisionHandler implements CollisionListener {
                     System.out.println("Luke's HP is " + luke.getHP());         //for debugging
                 } else {
                     luke.die();                                                 //player death and respawn
+                    luke.deathSFX();
                     luke.setPosition(luke.getWorld().spawnPoint());
                     luke.setHP(luke.getMaxHP());
                 }

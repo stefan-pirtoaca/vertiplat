@@ -1,7 +1,12 @@
 package vertiplat;
 
 import city.cs.engine.*;
+import java.applet.*;
 import org.jbox2d.common.Vec2;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Random;
 
 public class Luke extends DynamicBody {
     
@@ -13,6 +18,14 @@ public class Luke extends DynamicBody {
     private static final BodyImage  walkRight = new BodyImage("data/LukeRight.png", 4f);
     private static final BodyImage  attackingLeftImg = new BodyImage("data/LukeAttackingLeft.png", 4f);
     private static final BodyImage  attackingRightImg = new BodyImage("data/LukeAttackingRight.png", 4f);
+    private static final File       swing1File = new File("data/sfx/swing.wav");
+    private static final File       swing2File = new File("data/sfx/swing2.wav");
+    private static final File       jumpSoundFile = new File("data/sfx/jump.wav");
+    private static final File       deathSoundFile = new File("data/sfx/death.wav");
+    private final AudioClip         swing1;
+    private final AudioClip         swing2;
+    private final AudioClip         jumpSFX;
+    private final AudioClip         deathSFX;
     private final BaseLevel         world;
     private SolidFixture            swordArm;
     private int                     lives = 3;
@@ -23,7 +36,7 @@ public class Luke extends DynamicBody {
     private int                     damage;                                     //value of the damage in the current attacking state
     private int                     gold = 0;
     
-    public Luke(BaseLevel world) {
+    public Luke(BaseLevel world) throws MalformedURLException {
         super(world, bodyShape);
         this.world = world;
         damage = baseDamage;
@@ -33,6 +46,17 @@ public class Luke extends DynamicBody {
         body.setRestitution(0);
         setFixedRotation(true);
         setImage(walkRight);
+        
+        //sound files get converted to URLs
+        URL swing1URL = swing1File.toURI().toURL();                             
+        URL swing2URL = swing2File.toURI().toURL();
+        URL jumpSFXURL = jumpSoundFile.toURI().toURL();
+        URL deathSFXURL = deathSoundFile.toURI().toURL();
+        //AudioClip variables initialisations, these hold the actual sound clips for various sfx
+        swing1 = Applet.newAudioClip(swing1URL);
+        swing2 = Applet.newAudioClip(swing2URL);
+        deathSFX = Applet.newAudioClip(deathSFXURL);
+        jumpSFX = Applet.newAudioClip(jumpSFXURL);
     }
     
     @Override
@@ -44,12 +68,14 @@ public class Luke extends DynamicBody {
         swordArm = new SolidFixture(this, armLeft);
         body.setImage(attackingLeftImg);
         this.setAttackDamage(swordDamage);
+        this.swingSFX();
     }
     
     public void attackRight(Luke body) {
         swordArm = new SolidFixture(this, armRight);
         body.setImage(attackingRightImg);
         this.setAttackDamage(swordDamage);
+        this.swingSFX();
     }
     
     public void setAttackDamage(int damage) {
@@ -63,6 +89,24 @@ public class Luke extends DynamicBody {
     
     public void damageSpider(Spider spider) {
          spider.setHP(spider.getHP() - damage);
+    }
+    
+    /*
+     *Makes a swing sound, randomly choses one of the two sfx.
+     */
+    private void swingSFX() {
+        Random attackSound = new Random();
+        if(attackSound.nextBoolean()) {
+            swing1.play();
+        } else swing2.play();
+    }
+    
+    public void jumpSFX() {
+        jumpSFX.play();
+    }
+    
+    public void deathSFX() {
+        deathSFX.play();
     }
     
     public int getLives() {
