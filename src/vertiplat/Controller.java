@@ -5,8 +5,8 @@ import org.jbox2d.common.Vec2;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-/**
- * Key handler to control a luke.
+/*
+ * Key handler to control a Luke.
  * Implemented controls repeated here, for easier reference:
  * Left arrow key = walk left
  * Right arrow key = walk right
@@ -42,7 +42,8 @@ public class Controller extends KeyAdapter {
     }
     
     /** Handle key press events for walking(arrow keys),
-     * jumping(space bar) and attacking(x). */
+     * jumping(space bar) and attacking(x).
+     * @param e */
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
@@ -75,7 +76,8 @@ public class Controller extends KeyAdapter {
         } 
     }
     
-    /** Handle key release events (stop walking, stop attacking). */
+    /** Handle key release events (stop walking, stop attacking).
+     * @param e */
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
@@ -96,6 +98,9 @@ public class Controller extends KeyAdapter {
         }
     }
     
+    /*
+     * Updates the body to control, between level switches.
+     */
     public void setBody(Luke luke) {
         this.luke = luke;
         this.world = luke.getWorld();

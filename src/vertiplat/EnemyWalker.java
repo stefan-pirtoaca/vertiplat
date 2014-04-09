@@ -13,28 +13,20 @@ public class EnemyWalker implements StepListener {
     private static Walker walkLeft;
     private static World world;
     private static boolean goingRight = true;
-    private static long time = 0;                                               //no see
+    private static long time = 0;
     private final int timeToWalk;                                               //for how much time the characer goes left/right
     private final Spider body;
 
-    /*A StepListener that makes enemies (spiders, for now) walk around.
-     *What it's supposed to do:
-     * @param body - enemy to move
-     * @param speed - the speed at which the enemy will walk
-     * @param timeToWalk - time in seconds at which the enemy changes direction
-     *Known bug: if you attach this to more than one spider, the first spider
+    /** StepListener that makes spiders walk around.
+     * 
+     * Known bug: if you attach this to more than one spider, the first spider
      * will walk right and switch images, but doesn't turn left, the second
      * spider will turn every 1 second and won't switch image. If you add any
      * more spiders, they will just go right without switching image.
-     *I think it's because they share the same Walker class..? I don't have time
-     * to fix it at the moment, will try after Milestone 2.
-     */
-
-    /**
      *
-     * @param body
-     * @param speed
-     * @param timeToWalk
+     * @param body - enemy to move
+     * @param speed - the speed at which the enemy will walk
+     * @param timeToWalk - time in seconds at which the enemy changes direction
      */
     
     

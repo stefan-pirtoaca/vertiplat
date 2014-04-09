@@ -35,6 +35,8 @@ public class Luke extends DynamicBody {
     private static final int        baseDamage = 0;                             //damage when not attacking
     private int                     damage;                                     //value of the damage in the current attacking state
     private int                     gold = 0;
+    private static final File   menuBGMFile = new File("/data/MenuBGM.wav");
+    private static AudioClip    menuBGM;
     
     public Luke(BaseLevel world) throws MalformedURLException {
         super(world, bodyShape);
@@ -57,6 +59,9 @@ public class Luke extends DynamicBody {
         swing2 = Applet.newAudioClip(swing2URL);
         deathSFX = Applet.newAudioClip(deathSFXURL);
         jumpSFX = Applet.newAudioClip(jumpSFXURL);
+        
+        URL menuBGM_URL = menuBGMFile.toURI().toURL();
+        menuBGM = Applet.newAudioClip(menuBGM_URL);
     }
     
     @Override
@@ -67,15 +72,15 @@ public class Luke extends DynamicBody {
     public void attackLeft(Luke body) {
         swordArm = new SolidFixture(this, armLeft);
         body.setImage(attackingLeftImg);
-        this.setAttackDamage(swordDamage);
-        this.swingSFX();
+        setAttackDamage(swordDamage);
+        swingSFX();
     }
     
     public void attackRight(Luke body) {
         swordArm = new SolidFixture(this, armRight);
         body.setImage(attackingRightImg);
-        this.setAttackDamage(swordDamage);
-        this.swingSFX();
+        setAttackDamage(swordDamage);
+        swingSFX();
     }
     
     public void setAttackDamage(int damage) {
@@ -84,7 +89,7 @@ public class Luke extends DynamicBody {
     
     public void endAttack() {
         swordArm.destroy();
-        this.setAttackDamage(baseDamage);
+        setAttackDamage(baseDamage);
     }
     
     public void damageSpider(Spider spider) {
@@ -102,7 +107,7 @@ public class Luke extends DynamicBody {
     }
     
     public void jumpSFX() {
-        jumpSFX.play();
+        menuBGM.play();
     }
     
     public void deathSFX() {

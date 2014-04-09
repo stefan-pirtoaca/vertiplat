@@ -1,14 +1,26 @@
 package vertiplat;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class MainMenu extends javax.swing.JPanel {
+    
+    private final GameClient    game;
 
-    private final GameClient     game;
-
-    public MainMenu(GameClient game) {
+    public MainMenu(GameClient game) throws MalformedURLException, IOException {
         initComponents();
         this.game = game;
+        URL menuBG_URL = new File("data/menuBG.png").toURI().toURL();
+        BufferedImage menuBG = ImageIO.read(menuBG_URL);
+        JLabel menuLabel = new JLabel(new ImageIcon(menuBG));
+        add(menuLabel);
+        
     }
 
     /**
@@ -21,8 +33,11 @@ public class MainMenu extends javax.swing.JPanel {
     private void initComponents() {
 
         newGame = new javax.swing.JButton();
+        quit = new javax.swing.JButton();
+        Options = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        setBorder(null);
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         setPreferredSize(new java.awt.Dimension(800, 700));
 
         newGame.setText("New Game");
@@ -32,21 +47,53 @@ public class MainMenu extends javax.swing.JPanel {
             }
         });
 
+        quit.setText("Quit");
+        quit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitActionPerformed(evt);
+            }
+        });
+
+        Options.setText("Options");
+        Options.setToolTipText("");
+        Options.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OptionsActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Luke's Adventures");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(319, 319, 319)
-                .addComponent(newGame, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(339, Short.MAX_VALUE))
+                .addGap(343, 343, 343)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Options, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(quit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(newGame, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(268, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(233, 233, 233))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(249, 249, 249)
+                .addGap(121, 121, 121)
+                .addComponent(jLabel1)
+                .addGap(105, 105, 105)
                 .addComponent(newGame, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(405, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addComponent(Options, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(quit, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(220, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -54,13 +101,24 @@ public class MainMenu extends javax.swing.JPanel {
         try {
             game.newGame();
         } catch(MalformedURLException e) {
-            System.err.println("MalformedURLException, class GUI line 57");
+            System.err.println("MalformedURLException, class GUI.");
         }
         
     }//GEN-LAST:event_newGameActionPerformed
 
+    private void quitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_quitActionPerformed
+
+    private void OptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OptionsActionPerformed
+        game.menuNavigation("options");
+    }//GEN-LAST:event_OptionsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Options;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton newGame;
+    private javax.swing.JButton quit;
     // End of variables declaration//GEN-END:variables
 }

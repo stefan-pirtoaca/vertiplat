@@ -1,10 +1,8 @@
 package vertiplat;
 
-
 import city.cs.engine.*;
 
 public class GoldCoin extends DynamicBody {
-    
     private static final Shape      coinShape = new CircleShape(0.58f);
     private static final BodyImage  coinImg = new BodyImage("data/yos_coin.png");
     private int                     baseValue = 1;

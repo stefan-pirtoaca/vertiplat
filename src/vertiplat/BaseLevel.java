@@ -6,14 +6,18 @@ import org.jbox2d.common.Vec2;
 
 public abstract class BaseLevel extends World {
     
-    private Luke                    luke;
-    private LevelExit               exit;
+    /*
+     * Basic level structure, such as ground, walls (can be different for each level).
+     */
+    
     private static final float      GROUND_LENGTH = 100;                        //constant to all levels
     private static final float      GROUND_POS = -10;                           //constant to all levels
     private static final float      WALL_HEIGHT = 50;                           //constant to all levels
     private static float            WALL_X;                                     //received as a parameter from each level
     private static final float      BLOCK_SIZE = 2.5f;                          //half, actual block size is 5
     private static final BodyImage  bricks = new BodyImage("data/surface.png", 5);
+    private Luke                    luke;
+    private LevelExit               exit;
     
     public void build(GameClient game) throws MalformedURLException {
         luke = new Luke(this);
@@ -54,15 +58,19 @@ public abstract class BaseLevel extends World {
     
     public abstract int getGoldCoinNumber();                                    //used in drawCoinsIndicator(), in NormalView
     
+    /*
+     * Useful after a dynamic bind to a concrete level, returns the player object
+     * from that particular level.
+     */
     public Luke getPlayer() {
         return luke;
     }
     
-    public float getGroundPos() {                                               //used in some method's parameters
+    public float getGroundPos() {                                               //mainly used in spawing HPPots
         return GROUND_POS;
     }
     
-    public float getBlockSize() {                                               //same
+    public float getBlockSize() {                                               //used in building platforms
         return BLOCK_SIZE;
     }
 }

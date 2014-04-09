@@ -19,7 +19,7 @@ public class Level1 extends BaseLevel {
         super.build(game);
         blockSize = super.getBlockSize();
 
-        {                                                                      //Platforms
+        {                                                                       //Platforms
             Shape shape = new BoxShape(blockSize * 3, blockSize / 4);
             bricks.setClipped(true);
             Body platform1 = new StaticBody(this, shape);

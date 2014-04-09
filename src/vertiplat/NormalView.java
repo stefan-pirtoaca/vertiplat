@@ -15,7 +15,7 @@ public class NormalView extends UserView {
     private static Image        backgroundImage;
     private static Image        fullHeart;
     private static Image        emptyHeart;
-    private final Luke          luke;
+    private Luke                luke;
     private float               HPscale = 1;
     
     public NormalView (BaseLevel world, int width, int height){
@@ -67,8 +67,12 @@ public class NormalView extends UserView {
                 g.drawImage(fullHeart, 2 * Offset, 0, this);
                 g.drawImage(emptyHeart, 4 * Offset, 0, this);
                 break;
-            default:
+            case 1:
                 g.drawImage(fullHeart, 0, 0, this);
+                g.drawImage(emptyHeart, 2 * Offset, 0, this);
+                g.drawImage(emptyHeart, 4 * Offset, 0, this);
+            default:
+                g.drawImage(emptyHeart, 0, 0, this);
                 g.drawImage(emptyHeart, 2 * Offset, 0, this);
                 g.drawImage(emptyHeart, 4 * Offset, 0, this);
         }
@@ -79,5 +83,9 @@ public class NormalView extends UserView {
         g.setColor(new Color(255, 0, 0));
         g.drawString("Remaining coins: " + (luke.getWorld().getGoldCoinNumber() -
                 luke.getGold()), 0, HPbarHeight - HPbarHeight/3);
+    }
+    
+    public void updatePlayer(Luke luke) {
+        this.luke = luke;
     }
 }
